@@ -1,0 +1,95 @@
+<!-- profile.ejs -->
+
+<%- include('./partials/header') %>
+
+<div class="max-w-4xl mx-auto px-4 py-8 mt-20">
+    <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <div class="px-6 py-4">
+            <div class="flex items-center justify-between mb-4">
+                <div>
+                    <h1 class="font-bold text-2xl text-gray-800 mb-2">Profile Information</h1>
+                    <p class="text-gray-600">Manage your profile and settings.</p>
+                </div>
+                <div>
+                    <a href="/profile/edit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        Edit Profile
+                    </a>
+                    <a href="/logout" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 ml-2 rounded">
+                        Logout
+                    </a>
+                </div>
+            </div>
+
+            <!-- Personal Information -->
+            <div class="bg-gray-100 rounded-lg p-4 mb-4">
+                <h2 class="text-xl font-semibold text-gray-800 mb-2">Personal Information</h2>
+              <div class="div flex items-center justify-evenly">
+                <div class="grid grid-cols-2 gap-x-4">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-bold mb-2">Name:</label>
+                        <p class="text-gray-800"><%= user.fullname %></p>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-bold mb-2">Email:</label>
+                        <p class="text-gray-800"><%= user.email %></p>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-bold mb-2">Contact:</label>
+                        <p class="text-gray-800"><%= user.contact %></p>
+                    </div>
+                    <!-- Add more fields like phone number, address, etc. -->
+                </div>
+                <form action="/users/profile/dp/<%= user._id %>" method="post" class="flex flex-col gap-1 items-center justify-center">
+                  <div class="dp relative w-[100px] h-[100px] bg-gray-300 overflow-hidden rounded-full">
+                    <div class="icon absolute  text-white top-1/2 left-1/2 text-3xl cursor-pointer">+</div>
+                    <input type="file" name="picture" id="picture" class="p-[40px] rounded-full opacity-0 absolute">
+                   
+                  </div>
+                   
+
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded">Update Profile Picture</button>
+                </form>
+              </div>
+            </div>
+
+            <!-- Order History -->
+            <div class="bg-gray-100 rounded-lg p-4 mb-4">
+                <h2 class="text-xl font-semibold text-gray-800 mb-2">Order History</h2>
+                <div class="grid grid-cols-1 gap-y-4">
+                    <!-- Example order item -->
+                    <div class="border-b border-gray-300 pb-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <p class="font-semibold text-gray-800">#1234</p>
+                            <p class="text-gray-600">Delivered on Jul 10, 2024</p>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 w-20 h-20 bg-gray-200 rounded-lg overflow-hidden">
+                                <img src="https://via.placeholder.com/150" alt="Product Image" class="w-full h-full object-cover">
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-gray-800">Product Name</p>
+                                <p class="text-gray-600">Quantity: 2</p>
+                                <p class="text-gray-600">Total: ₹ 200</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add more order items dynamically -->
+                </div>
+            </div>
+
+            <!-- Account Settings -->
+            <div class="bg-gray-100 rounded-lg p-4">
+                <h2 class="text-xl font-semibold text-gray-800 mb-2">Account Settings</h2>
+                <div class="grid grid-cols-1 gap-y-4">
+                    <div>
+                        <label class="block text-gray-700 font-bold mb-2">Change Password:</label>
+                        <input type="password" class="block w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
+                    </div>
+                    <!-- Add more settings like notification preferences, privacy settings, etc. -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('./partials/footer') %>

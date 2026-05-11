@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="font-['helvetica_now_display']">
+    <nav class="w-full fixed top-0 left-0 px-5 py-3 flex items-center justify-between">
+        <h3 class="text-xl">Scatch</h3>
+
+        <div class="message">
+            <% var error = typeof error !== 'undefined' ? error : "" %> 
+            <% if(error.length > 0) { %>
+                <div class="message-box absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-red-500">
+                    <span class="inline-block mt-1 mb-1 text-white">
+                        <%= error %>
+                    </span>
+                </div>
+            <% } %>
+            <% var success = typeof success !== 'undefined' ? success : "" %>
+            <% if(success.length > 0) { %>
+                <div class="message-box absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-green-500">
+                    <span class="inline-block mt-1 mb-1 text-white">
+                        <%= success %>
+                    </span>
+                </div>
+            <% } %>
+        </div>
+        
+
+        <% var isLogged = typeof isLogged !== 'undefined' ? false : true %>
+       
+<% if (isLogged) { %>
+    <div class="link flex items-center w-1/5 justify-between">
+        <a href="/shop" class="">Shop</a>
+       
+        <a href="/cart" class="">Cart
+            <span class="cart-count bg-red-500 px-2 rounded-full">
+                <% var cartCount = typeof cartCount !== 'undefined' ? cartCount : 0 %>
+                     <span class="inline-block mt-1 mb-1 text-white text-sm font-semibold"><%= cartCount %>  </span>
+                     
+                        </span>
+                        </a>
+
+
+        
+        <a href="/users/profile" class="">My account</a>
+        <a href="/logout" class="text-red-500 hover:text-red-700">Logout</a>
+
+    </div>
+<% } %>
+       
+<% var ownersLogged = typeof ownersLogged !== 'undefined' ? true : false %>
+<% if (ownersLogged) { %>
+    <div class="link flex items-center gap-3 justify-between">
+        <a href="/owners/profile" class="">My account</a>
+        <a href="/owners/logout" class="text-red-500 hover:text-red-700">Logout</a>
+
+    </div>
+<% } %>
+
+
+
+    </nav>
